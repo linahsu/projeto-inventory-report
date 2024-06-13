@@ -21,3 +21,13 @@ class Product:
             "must be stored according to the following instructions: "
             f"{self.storage_instructions}."
         )
+if __name__ == "__main__":
+    print(Product(
+        "1", 
+        "Chocotone", 
+        "Bauducco", 
+        "01-12-2023", 
+        "01-05-2024", 
+        "12345678", 
+        "Manter em lugar arejado e longe do sol"
+    ).company_name)
