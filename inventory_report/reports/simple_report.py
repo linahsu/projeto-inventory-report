@@ -11,14 +11,10 @@ class SimpleReport(Report):
         self.inventories_list.append(inventory)
 
     def generate(self) -> str:
-        """Oldest manufacturing date: YYYY-MM-DD
-        Closest expiration date: YYYY-MM-DD
-        Company with the largest inventory: NOME DA EMPRESA"""
+        """Gera o relatório a partir dos produtos que estão presentes em cada um dos estoques armazenados"""
         
         oldest_manufactoring_date = date.today()
-        # print("today: ", oldest_manufactoring_date)
-        # print(type(oldest_manufactoring_date))
-        closest_expiration_date = date.min
+        closest_expiration_date = date.max
         companies_product_qtd = dict()
 
         for inventory in self.inventories_list:
@@ -29,26 +25,24 @@ class SimpleReport(Report):
                 else:
                     companies_product_qtd[product.company_name] += 1
 
-            # Converts dates 'YYYY-MM-DD' into datetime objects
-            date_format = "%Y-%m-%d"
+                # Converts dates 'YYYY-MM-DD' into datetime objects
+                date_format = "%Y-%m-%d"
 
-            manufactoring_date = datetime.strptime(product.manufacturing_date, date_format).date()
-            # print("manufactoring date: ", manufactoring_date)
-            # print(type(manufactoring_date))
-            expiration_date = datetime.strptime(product.expiration_date, date_format).date()
+                manufactoring_date = datetime.strptime(product.manufacturing_date, date_format).date()
+                expiration_date = datetime.strptime(product.expiration_date, date_format).date()
 
-            # Replace the dates in case it fits the conditionals setting the oldest manufactoring and the closest expiration dates
-            if manufactoring_date < oldest_manufactoring_date:
-                oldest_manufactoring_date = manufactoring_date
+                # Replace the dates in case it fits the conditionals setting the oldest manufactoring and the closest expiration dates
+                if manufactoring_date < oldest_manufactoring_date:
+                    oldest_manufactoring_date = manufactoring_date
 
-            if closest_expiration_date < expiration_date <= date.today():
-                closest_expiration_date = expiration_date
+                if closest_expiration_date > expiration_date > date.today():
+                    closest_expiration_date = expiration_date
 
         largest_inventory_company = max(companies_product_qtd, key=companies_product_qtd.get)
 
         return (
-            f"Oldest manufacturing date: {oldest_manufactoring_date} "
-            f"Closest expiration date: {closest_expiration_date} "
+            f"Oldest manufacturing date: {oldest_manufactoring_date}\n"
+            f"Closest expiration date: {closest_expiration_date}\n"
             f"Company with the largest inventory: {largest_inventory_company}"
         )
 
