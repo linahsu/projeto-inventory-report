@@ -15,6 +15,8 @@ class Importer(ABC):
 
 class JsonImporter(Importer):
     def import_data(self) -> list[Product]:
+        """Lê um arquivo JSON, instancia objetos de Product e retorna uma lista de Product"""
+        
         with open(self.path) as file:
             products_info = json.load(file)
 

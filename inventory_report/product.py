@@ -21,6 +21,8 @@ class Product:
             "must be stored according to the following instructions: "
             f"{self.storage_instructions}."
         )
+    
+    
 if __name__ == "__main__":
     print(Product(
         "1", 
