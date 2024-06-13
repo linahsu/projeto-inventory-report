@@ -13,6 +13,8 @@ def product_object() -> Product:
         "Keep it away from the sun")
 
 def test_product_report(product_object, capsys) -> None:
+    """Testa se o "método mágico" str do objeto Product retorna a frase correta."""
+    
     print(product_object)
     captured = capsys.readouterr()
     assert captured.out == (

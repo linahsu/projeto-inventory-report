@@ -15,6 +15,7 @@ def product_object() -> Product:
 
 def test_create_product(product_object) -> None:
     """Testa se o construtor do objeto Product contém os atributos corretos."""
+    
     assert product_object.id == "1"
     assert product_object.product_name == "Chocotone"
     assert product_object.company_name == "Bauducco"
