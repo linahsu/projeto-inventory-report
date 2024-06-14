@@ -40,6 +40,8 @@ class JsonImporter(Importer):
 
 class CsvImporter(Importer):
     def import_data(self) -> list[Product]:
+        """Lê um arquivo csv, instancia objetos de Product e retorna uma lista de Product"""
+
         with open(self.path, encoding="utf-8") as file:
             content = csv.DictReader(file, delimiter=",")
             products_info = [row for row in content]

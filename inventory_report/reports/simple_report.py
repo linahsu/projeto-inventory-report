@@ -6,6 +6,7 @@ from typing import List
 class SimpleReport(Report):
     def __init__(self):
         self.inventories_list: List[Inventory] = []
+        self.companies_product_qtd = dict()
 
     def add_inventory(self, inventory: Inventory) -> None:
         self.inventories_list.append(inventory)
@@ -15,15 +16,15 @@ class SimpleReport(Report):
         
         oldest_manufactoring_date = date.today()
         closest_expiration_date = date.max
-        companies_product_qtd = dict()
+        # companies_product_qtd = dict()
 
         for inventory in self.inventories_list:
             # faz a contagem de produtos por company no dicionário companies_product_qtd
             for product in inventory.data:
-                if not product.company_name in companies_product_qtd:
-                    companies_product_qtd[product.company_name] = 1
+                if not product.company_name in self.companies_product_qtd:
+                    self.companies_product_qtd[product.company_name] = 1
                 else:
-                    companies_product_qtd[product.company_name] += 1
+                    self.companies_product_qtd[product.company_name] += 1
 
                 # Converts dates 'YYYY-MM-DD' into datetime objects
                 date_format = "%Y-%m-%d"
@@ -38,7 +39,7 @@ class SimpleReport(Report):
                 if closest_expiration_date > expiration_date > date.today():
                     closest_expiration_date = expiration_date
 
-        largest_inventory_company = max(companies_product_qtd, key=companies_product_qtd.get)
+        largest_inventory_company = max(self.companies_product_qtd, key=self.companies_product_qtd.get)
 
         return (
             f"Oldest manufacturing date: {oldest_manufactoring_date}\n"
