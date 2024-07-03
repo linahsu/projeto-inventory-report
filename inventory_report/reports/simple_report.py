@@ -16,7 +16,6 @@ class SimpleReport(Report):
         
         oldest_manufactoring_date = date.today()
         closest_expiration_date = date.max
-        # companies_product_qtd = dict()
 
         for inventory in self.inventories_list:
             # faz a contagem de produtos por company no dicionário companies_product_qtd
