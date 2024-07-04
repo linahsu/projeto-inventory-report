@@ -1,6 +1,6 @@
 # Boas-vindas ao repositório do projeto Inventory Report!
 
-🧑‍💻 Neste projeto, foi desenvolvido um **gerador de relatórios**. O objetivo foi receber arquivos contendo informações sobre um estoque específico e, em seguida, produzir um relatório abrangente com base nesses dados. Esses dados de estoque podem ser obtidos de duas fontes:
+Neste projeto, foi desenvolvido um **gerador de relatórios**. O objetivo foi receber arquivos contendo informações sobre um estoque específico e, em seguida, produzir um relatório abrangente com base nesses dados. Esses dados de estoque podem ser obtidos de duas fontes:
 
 * Através da importação de um arquivo `CSV`;
 
@@ -9,6 +9,27 @@
 Além disso, o relatório final possuirá duas versões: **simples** e **completa**.
 
 ## Detalhes
+
+<details>
+  <summary><strong> 👨‍💻 Desenvolvimento </strong></summary>
+  <br />
+
+  O que foi desenvolvido por mim:
+
+* Teste do construtor do objeto Product verificando se contém os atributos corretos.
+* Teste para verificar se o "método mágico" str do objeto Product retorna a frase correta.
+* Interface Importer
+* classe JsonImporter
+* classe CsvImporter
+* classe Inventory
+* protocolo Report
+* classe SimpleReport
+* classe CompleteReport
+* função process_report_request
+
+  Todas as outras funcionalidades e configurações foram providas pela instituição de ensino Trybe.
+
+</details>
 
 <details>
   <summary><strong> 📝 Habilidades trabalhadas </strong></summary>
