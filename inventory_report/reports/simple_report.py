@@ -45,5 +45,3 @@ class SimpleReport(Report):
             f"Closest expiration date: {closest_expiration_date}\n"
             f"Company with the largest inventory: {largest_inventory_company}"
         )
-
-

@@ -1,7 +1,8 @@
 from typing import List
-from importers import JsonImporter, CsvImporter
-from inventory import Inventory
-from reports import SimpleReport, CompleteReport
+from inventory_report.importers import JsonImporter, CsvImporter
+from inventory_report.inventory import Inventory
+from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.reports.complete_report import CompleteReport
 
 
 def process_report_request(file_paths: List[str], report_type: str) -> str:
@@ -23,14 +24,12 @@ def process_report_request(file_paths: List[str], report_type: str) -> str:
         elif file.endswith(".csv"):
             products_list = CsvImporter(file).import_data()
             inventory = Inventory(products_list)
+        else:
+            continue
+        
+        if report_type == "simple":
+            simple_report.add_inventory(inventory)
+        else:
+            complete_report.add_inventory(inventory)
 
-        if inventory:
-            if simple_report:
-                simple_report.add_inventory(inventory)
-            else:
-                complete_report.add_inventory(inventory)
-                
-    simple_report.generate() if simple_report else complete_report.generate()
-        
-    
-        
+    return simple_report.generate() if report_type == "simple" else complete_report.generate()
